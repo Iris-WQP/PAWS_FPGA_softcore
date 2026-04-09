@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2018.2 (64-bit)
+# SW Build 2258646 on Thu Jun 14 20:02:38 MDT 2018
+# IP Build 2256618 on Thu Jun 14 22:10:49 MDT 2018
+# Start of session at: Mon Nov 10 21:36:42 2025
+# Process ID: 309569
+# Current directory: /data/home2/qiupingw/Softcore/PAWS_softcore_ax7325b_vivado2018/PAWS_softcore_ax7325b_vivado2018.runs/blk_mem_gen_0_synth_1
+# Command line: vivado -log blk_mem_gen_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source blk_mem_gen_0.tcl
+# Log file: /data/home2/qiupingw/Softcore/PAWS_softcore_ax7325b_vivado2018/PAWS_softcore_ax7325b_vivado2018.runs/blk_mem_gen_0_synth_1/blk_mem_gen_0.vds
+# Journal file: /data/home2/qiupingw/Softcore/PAWS_softcore_ax7325b_vivado2018/PAWS_softcore_ax7325b_vivado2018.runs/blk_mem_gen_0_synth_1/vivado.jou
+#-----------------------------------------------------------
+source blk_mem_gen_0.tcl -notrace

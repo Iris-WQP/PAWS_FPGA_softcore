@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2018.2 (64-bit)
+# SW Build 2258646 on Thu Jun 14 20:02:38 MDT 2018
+# IP Build 2256618 on Thu Jun 14 22:10:49 MDT 2018
+# Start of session at: Sun Apr  5 14:08:00 2026
+# Process ID: 244055
+# Current directory: /data/home2/qiupingw/Softcore/PAWS_softcore_ax7325b_vivado2018/PAWS_softcore_ax7325b_vivado2018.runs/synth_1
+# Command line: vivado -log softcore_top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source softcore_top.tcl
+# Log file: /data/home2/qiupingw/Softcore/PAWS_softcore_ax7325b_vivado2018/PAWS_softcore_ax7325b_vivado2018.runs/synth_1/softcore_top.vds
+# Journal file: /data/home2/qiupingw/Softcore/PAWS_softcore_ax7325b_vivado2018/PAWS_softcore_ax7325b_vivado2018.runs/synth_1/vivado.jou
+#-----------------------------------------------------------
+source softcore_top.tcl -notrace
