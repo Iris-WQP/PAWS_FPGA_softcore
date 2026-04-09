@@ -1,4 +1,4 @@
-<h1>PAWS FPGA Softcore <img src="paws_icon.svg" alt="PAWS icon" width="50" height="50" style="vertical-align: middle; margin-left: 8px;"></h1>
+<h1>PAWS FPGA Softcore <img src="paws_icon.png" alt="PAWS icon" width="50" height="50" style="vertical-align: middle; margin-left: 8px;"></h1>
 
 PAWS is a WebAssembly (Wasm) stack coprocessor designed for secure and efficient execution of Wasm workloads in hardware. This repository contains the FPGA implementation, prebuilt bitstream, and host-side scripts used to deploy and evaluate the PAWS softcore on the AX7325b development board.
 
