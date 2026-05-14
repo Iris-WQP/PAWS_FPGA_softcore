@@ -1,0 +1,143 @@
+0000000: 0061 736d                                 ; WASM_BINARY_MAGIC
+0000004: 0100 0000                                 ; WASM_BINARY_VERSION
+; section "Type" (1)
+0000008: 01                                        ; section code
+0000009: 00                                        ; section size (guess)
+000000a: 02                                        ; num types
+; func type 0
+000000b: 60                                        ; func
+000000c: 00                                        ; num params
+000000d: 00                                        ; num results
+; func type 1
+000000e: 60                                        ; func
+000000f: 01                                        ; num params
+0000010: 7f                                        ; i32
+0000011: 01                                        ; num results
+0000012: 7f                                        ; i32
+0000009: 09                                        ; FIXUP section size
+; section "Function" (3)
+0000013: 03                                        ; section code
+0000014: 00                                        ; section size (guess)
+0000015: 02                                        ; num functions
+0000016: 00                                        ; function 0 signature index
+0000017: 01                                        ; function 1 signature index
+0000014: 03                                        ; FIXUP section size
+; section "Memory" (5)
+0000018: 05                                        ; section code
+0000019: 00                                        ; section size (guess)
+000001a: 01                                        ; num memories
+; memory 0
+000001b: 00                                        ; limits: flags
+000001c: 01                                        ; limits: initial
+0000019: 03                                        ; FIXUP section size
+; section "Global" (6)
+000001d: 06                                        ; section code
+000001e: 00                                        ; section size (guess)
+000001f: 03                                        ; num globals
+0000020: 7f                                        ; i32
+0000021: 01                                        ; global mutability
+0000022: 41                                        ; i32.const
+0000023: 0c                                        ; i32 literal
+0000024: 0b                                        ; end
+0000025: 7f                                        ; i32
+0000026: 01                                        ; global mutability
+0000027: 41                                        ; i32.const
+0000028: 00                                        ; i32 literal
+0000029: 0b                                        ; end
+000002a: 7f                                        ; i32
+000002b: 01                                        ; global mutability
+000002c: 41                                        ; i32.const
+000002d: 00                                        ; i32 literal
+000002e: 0b                                        ; end
+000001e: 10                                        ; FIXUP section size
+; section "Export" (7)
+000002f: 07                                        ; section code
+0000030: 00                                        ; section size (guess)
+0000031: 04                                        ; num exports
+0000032: 02                                        ; string length
+0000033: 6730                                     g0  ; export name
+0000035: 03                                        ; export kind
+0000036: 00                                        ; export global index
+0000037: 02                                        ; string length
+0000038: 6731                                     g1  ; export name
+000003a: 03                                        ; export kind
+000003b: 01                                        ; export global index
+000003c: 02                                        ; string length
+000003d: 6732                                     g2  ; export name
+000003f: 03                                        ; export kind
+0000040: 02                                        ; export global index
+0000041: 03                                        ; string length
+0000042: 6661 63                                  fac  ; export name
+0000045: 00                                        ; export kind
+0000046: 01                                        ; export func index
+0000030: 16                                        ; FIXUP section size
+; section "Start" (8)
+0000047: 08                                        ; section code
+0000048: 00                                        ; section size (guess)
+0000049: 00                                        ; start func index
+0000048: 01                                        ; FIXUP section size
+; section "Code" (10)
+000004a: 0a                                        ; section code
+000004b: 00                                        ; section size (guess)
+000004c: 02                                        ; num functions
+; function body 0
+000004d: 00                                        ; func body size (guess)
+000004e: 00                                        ; local decl count
+000004f: 23                                        ; global.get
+0000050: 00                                        ; global index
+0000051: 10                                        ; call
+0000052: 01                                        ; function index
+0000053: 24                                        ; global.set
+0000054: 01                                        ; global index
+0000055: 0b                                        ; end
+000004d: 08                                        ; FIXUP func body size
+; function body 1
+0000056: 00                                        ; func body size (guess)
+0000057: 01                                        ; local decl count
+0000058: 01                                        ; local type count
+0000059: 7f                                        ; i32
+000005a: 20                                        ; local.get
+000005b: 00                                        ; local index
+000005c: 21                                        ; local.set
+000005d: 01                                        ; local index
+000005e: 03                                        ; loop
+000005f: 7f                                        ; i32
+0000060: 20                                        ; local.get
+0000061: 01                                        ; local index
+0000062: 20                                        ; local.get
+0000063: 00                                        ; local index
+0000064: 41                                        ; i32.const
+0000065: 01                                        ; i32 literal
+0000066: 6b                                        ; i32.sub
+0000067: 22                                        ; local.tee
+0000068: 00                                        ; local index
+0000069: 6c                                        ; i32.mul
+000006a: 21                                        ; local.set
+000006b: 01                                        ; local index
+000006c: 20                                        ; local.get
+000006d: 00                                        ; local index
+000006e: 41                                        ; i32.const
+000006f: 01                                        ; i32 literal
+0000070: 4b                                        ; i32.gt_u
+0000071: 0d                                        ; br_if
+0000072: 00                                        ; break depth
+0000073: 20                                        ; local.get
+0000074: 01                                        ; local index
+0000075: 0b                                        ; end
+0000076: 0b                                        ; end
+0000056: 20                                        ; FIXUP func body size
+000004b: 2b                                        ; FIXUP section size
+; section "name"
+0000077: 00                                        ; section code
+0000078: 00                                        ; section size (guess)
+0000079: 04                                        ; string length
+000007a: 6e61 6d65                                name  ; custom section name
+000007e: 02                                        ; local name type
+000007f: 00                                        ; subsection size (guess)
+0000080: 02                                        ; num functions
+0000081: 00                                        ; function index
+0000082: 00                                        ; num locals
+0000083: 01                                        ; function index
+0000084: 00                                        ; num locals
+000007f: 05                                        ; FIXUP subsection size
+0000078: 0c                                        ; FIXUP section size

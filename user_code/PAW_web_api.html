@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PAWS Visualization</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(145deg, #1e2e3f 0%, #15232e 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .window-card {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(12px);
+      border-radius: 36px;
+      box-shadow: 0 30px 50px -16px rgba(0, 0, 0, 0.4);
+      width: 100%;
+      max-width: 780px;
+      padding: 2rem 2rem 2.2rem;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+    }
+
+    .title-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 2rem;
+    }
+
+    .window-dots {
+      display: flex;
+      gap: 8px;
+    }
+
+    .dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+    }
+
+    .dot.red { background: #ff5f56; }
+    .dot.yellow { background: #ffbd2e; }
+    .dot.green { background: #27c93f; }
+
+    .title-text {
+      flex: 1;
+      text-align: center;
+      font-weight: 650;
+      font-size: 1.45rem;
+      color: #0b1c2c;
+      margin-right: 52px;
+    }
+
+    .factorial-section,
+    .serial-panel,
+    .result-area {
+      background: #f4f8fe;
+      border-radius: 28px;
+      padding: 1.6rem 1.8rem;
+      margin-bottom: 1.6rem;
+    }
+
+    .section-label {
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #1f4a5c;
+      margin-bottom: 1rem;
+    }
+
+    .input-group,
+    .serial-row,
+    .file-area,
+    .transmit-bar {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .serial-row,
+    .file-area {
+      margin-bottom: 14px;
+    }
+
+    #numberInput,
+    #baudRate {
+      flex: 1 1 200px;
+      padding: 0.9rem 1.2rem;
+      border: 1px solid #dbe3ec;
+      border-radius: 60px;
+      background: white;
+      font-size: 1rem;
+      color: #0a1a27;
+      outline: none;
+    }
+
+    #numberInput:focus,
+    #baudRate:focus {
+      border-color: #0077ff;
+    }
+
+    button {
+      border: none;
+      border-radius: 60px;
+      padding: 0.85rem 1.6rem;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    #connectSerialBtn,
+    #startTxBtn {
+      background: #2c4c6b;
+    }
+
+    #calcBtn {
+      background: #0077ff;
+    }
+
+    button:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+
+    .status-indicator {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-left: auto;
+      font-size: 0.85rem;
+    }
+
+    .led {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #a0b8c9;
+    }
+
+    .led.active { background: #2ac96a; }
+    .led.error { background: #ff4f4f; }
+
+    #hexFile { display: none; }
+
+    .file-label {
+      background: #0077aa;
+      color: white;
+      padding: 0.7rem 1.2rem;
+      border-radius: 40px;
+      cursor: pointer;
+    }
+
+    #factorialDisplay {
+      background: white;
+      border-radius: 20px;
+      padding: 1.1rem 1.4rem;
+      font-size: 1.05rem;
+      line-height: 1.5;
+      color: #0b1a26;
+      border: 1px solid #dde5ed;
+      min-height: 88px;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .result-line {
+      padding: 0.3rem 0;
+      border-bottom: 1px dashed #dde5ed;
+    }
+
+    .result-line:last-child {
+      border-bottom: none;
+    }
+
+    .footer {
+      margin-top: 1rem;
+      text-align: right;
+      color: #5a7387;
+      font-size: 0.7rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="window-card">
+    <div class="title-bar">
+      <div class="window-dots">
+        <span class="dot red"></span>
+        <span class="dot yellow"></span>
+        <span class="dot green"></span>
+      </div>
+      <div class="title-text">PAWS · Web Serial API</div>
+    </div>
+
+    <div class="serial-panel">
+      <div class="section-label">Serial Configuration</div>
+      <div class="serial-row">
+        <input type="number" id="baudRate" value="115200" min="1200" max="921600" step="1">
+        <button id="connectSerialBtn">Connect Serial</button>
+        <div class="status-indicator">
+          <span id="serialStatusText">Disconnected</span>
+          <span id="statusLed" class="led"></span>
+        </div>
+      </div>
+      <div class="file-area">
+        <label for="hexFile" class="file-label">Select hex file</label>
+        <input type="file" id="hexFile" accept=".hex,.txt,text/plain">
+        <span id="fileName">No file selected</span>
+      </div>
+      <div class="transmit-bar">
+        <button id="startTxBtn">Download Wasm Hex</button>
+      </div>
+    </div>
+
+    <div class="factorial-section">
+      <div class="section-label">Factorial Box</div>
+      <label for="numberInput" style="display:block; margin-bottom:0.7rem; color:#1f4a5c; font-weight:600;">Enter a non-negative integer for `i64 factorial`</label>
+      <div class="input-group">
+        <input type="number" id="numberInput" min="0" step="1" value="5" placeholder="e.g. 5">
+        <button id="calcBtn">Show Result</button>
+      </div>
+      <div id="inputFeedback" style="min-height:24px; margin-top:8px; color:#c23030;"></div>
+    </div>
+
+    <div class="result-area">
+      <div class="section-label">Factorial Result</div>
+      <div id="factorialDisplay">Waiting for serial connection and hardware result...</div>
+    </div>
+    <div class="footer">PAWS Web Serial API</div>
+  </div>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const CMD_EXEC_I64 = 0xF1;
+      const FUNC_INDEX_FACTORIAL = 1;
+      const ACK_READY = 0xA5;
+      const ACK_BUSY = 0x5A;
+      const DOWNLOAD_END_MARKER = 0xEE;
+      const DOWNLOAD_SUMMARY_LENGTH = 16;
+
+      const numberInput = document.getElementById('numberInput');
+      const calcBtn = document.getElementById('calcBtn');
+      const displayDiv = document.getElementById('factorialDisplay');
+      const feedbackDiv = document.getElementById('inputFeedback');
+      const baudRateInput = document.getElementById('baudRate');
+      const connectBtn = document.getElementById('connectSerialBtn');
+      const serialStatusText = document.getElementById('serialStatusText');
+      const statusLed = document.getElementById('statusLed');
+      const hexFileInput = document.getElementById('hexFile');
+      const fileNameSpan = document.getElementById('fileName');
+      const startTxBtn = document.getElementById('startTxBtn');
+
+      let port = null;
+      let serialConnected = false;
+      let fileBytes = [];
+      let busy = false;
+      let wasmDownloaded = false;
+
+      function clearDisplay(initialText = '') {
+        displayDiv.innerHTML = '';
+        if (initialText) {
+          appendDisplay(initialText);
+        }
+      }
+
+      function appendDisplay(text) {
+        if (!displayDiv.querySelector('.result-line') && displayDiv.textContent.includes('Waiting for serial connection')) {
+          displayDiv.innerHTML = '';
+        }
+        const line = document.createElement('div');
+        line.className = 'result-line';
+        line.textContent = text;
+        displayDiv.appendChild(line);
+        displayDiv.scrollTop = displayDiv.scrollHeight;
+      }
+
+      function bytesToHexString(bytes) {
+        return Array.from(bytes, byte => byte.toString(16).padStart(2, '0')).join(' ');
+      }
+
+      function setDisplay(text) {
+        clearDisplay(text);
+      }
+
+      function validateInput() {
+        const raw = numberInput.value.trim();
+        if (raw === '') {
+          feedbackDiv.textContent = 'Please enter an integer.';
+          return null;
+        }
+        const num = Number(raw);
+        if (!Number.isFinite(num) || !Number.isInteger(num) || num < 0) {
+          feedbackDiv.textContent = 'Please enter a non-negative integer.';
+          return null;
+        }
+        if (!Number.isSafeInteger(num)) {
+          feedbackDiv.textContent = 'Value must fit in JavaScript safe integer range.';
+          return null;
+        }
+        feedbackDiv.textContent = '';
+        return BigInt(num);
+      }
+
+      function bigIntToBytesBE(value) {
+        const bytes = new Uint8Array(8);
+        let temp = BigInt.asUintN(64, value);
+        for (let i = 7; i >= 0; i--) {
+          bytes[i] = Number(temp & 0xFFn);
+          temp >>= 8n;
+        }
+        return bytes;
+      }
+
+      function bytesToBigIntBE(bytes) {
+        let value = 0n;
+        for (const byte of bytes) {
+          value = (value << 8n) | BigInt(byte);
+        }
+        return value;
+      }
+
+      async function connectSerial() {
+        if (!('serial' in navigator)) {
+          alert('Web Serial API is not supported in this browser.');
+          return;
+        }
+        try {
+          if (serialConnected && port) {
+            await disconnectSerial();
+          }
+          port = await navigator.serial.requestPort();
+          await port.open({ baudRate: parseInt(baudRateInput.value, 10) || 115200 });
+          serialConnected = true;
+          wasmDownloaded = false;
+          serialStatusText.textContent = 'Connected';
+          statusLed.className = 'led active';
+          connectBtn.textContent = 'Reconnect Serial';
+          appendDisplay('Serial connected.');
+          appendDisplay('Select a wasm hex file, then click Download Wasm Hex.');
+        } catch (error) {
+          serialConnected = false;
+          port = null;
+          serialStatusText.textContent = 'Connection Failed';
+          statusLed.className = 'led error';
+          setDisplay(`Serial connection failed: ${error.message}`);
+        }
+      }
+
+      async function disconnectSerial() {
+        if (port) {
+          try {
+            await port.close();
+          } catch (_) {}
+        }
+        port = null;
+        serialConnected = false;
+        wasmDownloaded = false;
+        serialStatusText.textContent = 'Disconnected';
+        statusLed.className = 'led';
+        connectBtn.textContent = 'Connect Serial';
+      }
+
+      function handleFileSelect(event) {
+        const file = event.target.files[0];
+        if (!file) {
+          fileNameSpan.textContent = 'No file selected';
+          fileBytes = [];
+          return;
+        }
+        fileNameSpan.textContent = file.name;
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const lines = String(e.target.result).split(/\r?\n/);
+          const bytes = [];
+          for (const lineRaw of lines) {
+            const line = lineRaw.trim();
+            if (!line) continue;
+            const value = parseInt(line, 16);
+            if (!Number.isNaN(value) && value >= 0 && value <= 0xFF) {
+              bytes.push(value);
+            }
+          }
+          fileBytes = bytes;
+          wasmDownloaded = false;
+          appendDisplay(`Loaded ${bytes.length} bytes from hex file.`);
+          appendDisplay('Ready to download wasm bytecode from the beginning.');
+        };
+        reader.readAsText(file);
+      }
+
+      async function withPort(callback) {
+        if (!serialConnected || !port) {
+          throw new Error('Serial port is not connected.');
+        }
+        const writer = port.writable.getWriter();
+        const reader = port.readable.getReader();
+        try {
+          return await callback({ writer, reader });
+        } finally {
+          writer.releaseLock();
+          reader.releaseLock();
+        }
+      }
+
+      async function readExact(reader, length, timeoutMs) {
+        const result = [];
+        const deadline = Date.now() + timeoutMs;
+        while (result.length < length) {
+          const remain = deadline - Date.now();
+          if (remain <= 0) throw new Error(`Timed out waiting for ${length} bytes.`);
+          const readPromise = reader.read();
+          const timeoutPromise = new Promise((_, reject) => {
+            setTimeout(() => reject(new Error('Serial read timeout.')), remain);
+          });
+          const { value, done } = await Promise.race([readPromise, timeoutPromise]);
+          if (done) throw new Error('Serial stream closed.');
+          if (value) {
+            for (const byte of value) {
+              result.push(byte);
+              if (result.length === length) break;
+            }
+          }
+        }
+        return new Uint8Array(result);
+      }
+
+      async function downloadHex() {
+        if (busy) return;
+        if (fileBytes.length === 0) {
+          alert('Please select a valid hex file first.');
+          return;
+        }
+        busy = true;
+        startTxBtn.disabled = true;
+        calcBtn.disabled = true;
+        try {
+          clearDisplay('Starting wasm bytecode download...');
+          await withPort(async ({ writer, reader }) => {
+            for (let i = 0; i < fileBytes.length; i++) {
+              const byte = fileBytes[i];
+              await writer.write(new Uint8Array([byte]));
+              if (i === 0) {
+                appendDisplay('Sent first byte of wasm bytecode.');
+              } else if ((i + 1) % 64 === 0) {
+                appendDisplay(`Sent ${i + 1} / ${fileBytes.length} bytes.`);
+              }
+              await new Promise(resolve => setTimeout(resolve, 3));
+            }
+            await writer.write(new Uint8Array(Array(8).fill(DOWNLOAD_END_MARKER)));
+            appendDisplay('Sent 8-byte end marker.');
+
+            const summary = await readExact(reader, DOWNLOAD_SUMMARY_LENGTH, 4000);
+            appendDisplay(`Instruction[0] first 8 bytes: ${bytesToHexString(summary.slice(0, 8))}`);
+            appendDisplay(`Global mem[0:1] first 8 bytes: ${bytesToHexString(summary.slice(8, 16))}`);
+          });
+          wasmDownloaded = true;
+          appendDisplay(`Wasm hex download complete. Total data bytes: ${fileBytes.length}.`);
+          appendDisplay('You can now use Show Result to invoke func 1.');
+        } catch (error) {
+          wasmDownloaded = false;
+          setDisplay(`Hex download failed: ${error.message}`);
+        } finally {
+          busy = false;
+          startTxBtn.disabled = false;
+          calcBtn.disabled = false;
+        }
+      }
+
+      async function runFactorialOnHardware() {
+        if (busy) return;
+        const n = validateInput();
+        if (n === null) return;
+        if (!wasmDownloaded) {
+          appendDisplay('Please download wasm bytecode first.');
+          return;
+        }
+        busy = true;
+        calcBtn.disabled = true;
+        startTxBtn.disabled = true;
+        appendDisplay(`Invoking hardware factorial with input ${n.toString()}...`);
+        try {
+          const result = await withPort(async ({ writer, reader }) => {
+            const payload = new Uint8Array(10);
+            payload[0] = CMD_EXEC_I64;
+            payload[1] = FUNC_INDEX_FACTORIAL;
+            payload.set(bigIntToBytesBE(n), 2);
+            await writer.write(payload);
+            appendDisplay('Sent function invocation frame.');
+
+            const ack = await readExact(reader, 1, 2000);
+            if (ack[0] === ACK_BUSY) {
+              throw new Error('Hardware is busy.');
+            }
+            if (ack[0] !== ACK_READY) {
+              throw new Error(`Unexpected ACK byte: 0x${ack[0].toString(16).padStart(2, '0')}`);
+            }
+            appendDisplay('Received ACK from hardware.');
+
+            const resp = await readExact(reader, 8, 10000);
+            return bytesToBigIntBE(resp);
+          });
+          appendDisplay(`${n.toString()}! = ${result.toString()}`);
+        } catch (error) {
+          appendDisplay(`Hardware execution failed: ${error.message}`);
+        } finally {
+          busy = false;
+          calcBtn.disabled = false;
+          startTxBtn.disabled = false;
+        }
+      }
+
+      connectBtn.addEventListener('click', async () => {
+        if (serialConnected) {
+          await disconnectSerial();
+          setTimeout(() => { connectSerial(); }, 50);
+        } else {
+          connectSerial();
+        }
+      });
+
+      hexFileInput.addEventListener('change', handleFileSelect);
+      startTxBtn.addEventListener('click', downloadHex);
+      calcBtn.addEventListener('click', runFactorialOnHardware);
+      numberInput.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') runFactorialOnHardware();
+      });
+    })();
+  </script>
+</body>
+</html>

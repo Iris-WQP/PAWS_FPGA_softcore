@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="TB_WASM_TOP_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="TB_WASM_TOP" />
+            <top_module name="glbl" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="10621480974fs"></ZoomStartTime>
+      <ZoomEndTime time="10672595131fs"></ZoomEndTime>
+      <Cursor1Time time="10634511000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="233"></NameColumnWidth>
+      <ValueColumnWidth column_width="203"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="42" />
+   <wvobject type="logic" fp_name="/TB_WASM_TOP/clk">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/TB_WASM_TOP/rst_n">
+      <obj_property name="ElementShortName">rst_n</obj_property>
+      <obj_property name="ObjectShortName">rst_n</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/TB_WASM_TOP/o_ERROR">
+      <obj_property name="ElementShortName">o_ERROR[2:0]</obj_property>
+      <obj_property name="ObjectShortName">o_ERROR[2:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/TB_WASM_TOP/o_work_state">
+      <obj_property name="ElementShortName">o_work_state[1:0]</obj_property>
+      <obj_property name="ObjectShortName">o_work_state[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/TB_WASM_TOP/pipe1_work_state">
+      <obj_property name="ElementShortName">pipe1_work_state[1:0]</obj_property>
+      <obj_property name="ObjectShortName">pipe1_work_state[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/TB_WASM_TOP/pipe2_work_state">
+      <obj_property name="ElementShortName">pipe2_work_state[1:0]</obj_property>
+      <obj_property name="ObjectShortName">pipe2_work_state[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/TB_WASM_TOP/o_instr_mem_wr_rdy">
+      <obj_property name="ElementShortName">o_instr_mem_wr_rdy</obj_property>
+      <obj_property name="ObjectShortName">o_instr_mem_wr_rdy</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/TB_WASM_TOP/o_line_mem_rd_data">
+      <obj_property name="ElementShortName">o_line_mem_rd_data[31:0]</obj_property>
+      <obj_property name="ObjectShortName">o_line_mem_rd_data[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/TB_WASM_TOP/i_instr_mem_wr_vld">
+      <obj_property name="ElementShortName">i_instr_mem_wr_vld</obj_property>
+      <obj_property name="ObjectShortName">i_instr_mem_wr_vld</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/TB_WASM_TOP/i_instr_mem_wr_addr">
+      <obj_property name="ElementShortName">i_instr_mem_wr_addr[9:0]</obj_property>
+      <obj_property name="ObjectShortName">i_instr_mem_wr_addr[9:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/TB_WASM_TOP/i_instr_mem_wr_data">
+      <obj_property name="ElementShortName">i_instr_mem_wr_data[87:0]</obj_property>
+      <obj_property name="ObjectShortName">i_instr_mem_wr_data[87:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/TB_WASM_TOP/i_instr_mem_write_finish">
+      <obj_property name="ElementShortName">i_instr_mem_write_finish</obj_property>
+      <obj_property name="ObjectShortName">i_instr_mem_write_finish</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/TB_WASM_TOP/i_line_mem_rd_rdy">
+      <obj_property name="ElementShortName">i_line_mem_rd_rdy</obj_property>
+      <obj_property name="ObjectShortName">i_line_mem_rd_rdy</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/TB_WASM_TOP/i_line_mem_rd_addr">
+      <obj_property name="ElementShortName">i_line_mem_rd_addr[8:0]</obj_property>
+      <obj_property name="ObjectShortName">i_line_mem_rd_addr[8:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/TB_WASM_TOP/cnttt">
+      <obj_property name="ElementShortName">cnttt[31:0]</obj_property>
+      <obj_property name="ObjectShortName">cnttt[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/TB_WASM_TOP/cnt">
+      <obj_property name="ElementShortName">cnt[31:0]</obj_property>
+      <obj_property name="ObjectShortName">cnt[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/TB_WASM_TOP/cnt_max">
+      <obj_property name="ElementShortName">cnt_max[31:0]</obj_property>
+      <obj_property name="ObjectShortName">cnt_max[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/TB_WASM_TOP/i_debug_enable">
+      <obj_property name="ElementShortName">i_debug_enable</obj_property>
+      <obj_property name="ObjectShortName">i_debug_enable</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/TB_WASM_TOP/i2cclk">
+      <obj_property name="ElementShortName">i2cclk</obj_property>
+      <obj_property name="ObjectShortName">i2cclk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/TB_WASM_TOP/err_flag">
+      <obj_property name="ElementShortName">err_flag</obj_property>
+      <obj_property name="ObjectShortName">err_flag</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/TB_WASM_TOP/dev_adr">
+      <obj_property name="ElementShortName">dev_adr[6:0]</obj_property>
+      <obj_property name="ObjectShortName">dev_adr[6:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/TB_WASM_TOP/reg_adr">
+      <obj_property name="ElementShortName">reg_adr[7:0]</obj_property>
+      <obj_property name="ObjectShortName">reg_adr[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/TB_WASM_TOP/wr_data">
+      <obj_property name="ElementShortName">wr_data[7:0]</obj_property>
+      <obj_property name="ObjectShortName">wr_data[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/TB_WASM_TOP/clk_cnt">
+      <obj_property name="ElementShortName">clk_cnt[31:0]</obj_property>
+      <obj_property name="ObjectShortName">clk_cnt[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/TB_WASM_TOP/u_WASM_TOP/u_instr_mem_ctrl/rd_data_out">
+      <obj_property name="ElementShortName">rd_data_out[87:0]</obj_property>
+      <obj_property name="ObjectShortName">rd_data_out[87:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/TB_WASM_TOP/u_WASM_TOP/u_instr_mem_ctrl/row_addr">
+      <obj_property name="ElementShortName">row_addr[9:0]</obj_property>
+      <obj_property name="ObjectShortName">row_addr[9:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/TB_WASM_TOP/u_WASM_TOP/u_ctrl_unit/section_type">
+      <obj_property name="ElementShortName">section_type[7:0]</obj_property>
+      <obj_property name="ObjectShortName">section_type[7:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FFD700</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/TB_WASM_TOP/u_WASM_TOP/u_ctrl_unit/instr_pointer_state">
+      <obj_property name="ElementShortName">instr_pointer_state[1:0]</obj_property>
+      <obj_property name="ObjectShortName">instr_pointer_state[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/TB_WASM_TOP/u_WASM_TOP/Instr">
+      <obj_property name="ElementShortName">Instr[87:0]</obj_property>
+      <obj_property name="ObjectShortName">Instr[87:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/TB_WASM_TOP/u_WASM_TOP/u_instr_mem_ctrl/read_pointer">
+      <obj_property name="ElementShortName">read_pointer[17:0]</obj_property>
+      <obj_property name="ObjectShortName">read_pointer[17:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/TB_WASM_TOP/u_WASM_TOP/A_pop_window">
+      <obj_property name="ElementShortName">A_pop_window[63:0]</obj_property>
+      <obj_property name="ObjectShortName">A_pop_window[63:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FFD700</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/TB_WASM_TOP/u_WASM_TOP/B_pop_window">
+      <obj_property name="ElementShortName">B_pop_window[63:0]</obj_property>
+      <obj_property name="ObjectShortName">B_pop_window[63:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FFD700</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/TB_WASM_TOP/u_WASM_TOP/C_pop_window">
+      <obj_property name="ElementShortName">C_pop_window[63:0]</obj_property>
+      <obj_property name="ObjectShortName">C_pop_window[63:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FFD700</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/TB_WASM_TOP/u_WASM_TOP/A_ALU">
+      <obj_property name="ElementShortName">A_ALU[63:0]</obj_property>
+      <obj_property name="ObjectShortName">A_ALU[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/TB_WASM_TOP/u_WASM_TOP/B_ALU">
+      <obj_property name="ElementShortName">B_ALU[63:0]</obj_property>
+      <obj_property name="ObjectShortName">B_ALU[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/TB_WASM_TOP/u_WASM_TOP/u_ctrl_unit/code_pre_read_state">
+      <obj_property name="ElementShortName">code_pre_read_state[1:0]</obj_property>
+      <obj_property name="ObjectShortName">code_pre_read_state[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/TB_WASM_TOP/u_WASM_TOP/u_line_memory/addr">
+      <obj_property name="ElementShortName">addr[9:0]</obj_property>
+      <obj_property name="ObjectShortName">addr[9:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/TB_WASM_TOP/u_WASM_TOP/u_line_memory/wdata">
+      <obj_property name="ElementShortName">wdata[63:0]</obj_property>
+      <obj_property name="ObjectShortName">wdata[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/TB_WASM_TOP/u_WASM_TOP/u_line_memory/rdata">
+      <obj_property name="ElementShortName">rdata[63:0]</obj_property>
+      <obj_property name="ObjectShortName">rdata[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/TB_WASM_TOP/u_WASM_TOP/u_line_memory/we">
+      <obj_property name="ElementShortName">we</obj_property>
+      <obj_property name="ObjectShortName">we</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/TB_WASM_TOP/u_WASM_TOP/u_line_memory/en">
+      <obj_property name="ElementShortName">en</obj_property>
+      <obj_property name="ObjectShortName">en</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/TB_WASM_TOP/u_WASM_TOP/u_ctrl_unit/constant">
+      <obj_property name="ElementShortName">constant[63:0]</obj_property>
+      <obj_property name="ObjectShortName">constant[63:0]</obj_property>
+   </wvobject>
+</wave_config>
